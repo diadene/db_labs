@@ -4,20 +4,20 @@ CREATE TYPE order_status AS ENUM ('created', 'paid', 'in_delivery', 'delivered',
 CREATE TYPE delivery_status AS ENUM ('gathering', 'handed_to_courier', 'in_transit', 'received');
 
 CREATE TABLE users (
-                       id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-                       name VARCHAR(30) NOT NULL,
-                       email VARCHAR NOT NULL UNIQUE,               -- можно использовать как естественный ключ
-                       phone BIGINT NOT NULL,
-                       role user_role NOT NULL,
-                       created_at timestamptz NOT NULL DEFAULT now()
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    email VARCHAR NOT NULL UNIQUE,               -- можно использовать как естественный ключ
+    phone BIGINT NOT NULL,
+    role user_role NOT NULL,
+    created_at timestamptz NOT NULL DEFAULT now()
 );
 
 CREATE TABLE sellers (
-                         id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-                         user_id BIGINT NOT NULL UNIQUE REFERENCES users(id) ON DELETE RESTRICT ON UPDATE CASCADE,
-                         store_name VARCHAR(80) NOT NULL UNIQUE,            -- один пользователь не может иметь 2 магазина с одинаковым названием
-                         description TEXT NOT NULL,
-                         created_at timestamptz NOT NULL DEFAULT now()
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id BIGINT NOT NULL UNIQUE REFERENCES users(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    store_name VARCHAR(80) NOT NULL UNIQUE,            -- один пользователь не может иметь 2 магазина с одинаковым названием
+    description TEXT NOT NULL,
+    created_at timestamptz NOT NULL DEFAULT now()
 );
 
 CREATE TABLE categories (
@@ -110,4 +110,9 @@ CREATE TABLE product_review (
     status VARCHAR(20) NOT NULL DEFAULT 'published' CHECK ( status IN ('published', 'hidden')),
     created_at timestamptz NOT NULL DEFAULT now()
 );
+
+
+
+
+
 
