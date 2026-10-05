@@ -7,7 +7,7 @@ CREATE TABLE users (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     email VARCHAR NOT NULL UNIQUE,               -- можно использовать как естественный ключ
-    phone BIGINT NOT NULL,
+    phone VARCHAR(19) NOT NULL,             -- максимальное количество символов в номере телефона - 19
     role user_role NOT NULL,
     created_at timestamptz NOT NULL DEFAULT now()
 );
