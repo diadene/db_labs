@@ -3,4 +3,5 @@ SELECT  sellers.store_name,
 FROM order_items
          JOIN products ON order_items.product_id = products.id
          JOIN sellers ON products.seller_id = sellers.id
-GROUP BY sellers.store_name;
+GROUP BY sellers.store_name
+HAVING SUM(products.price * order_items.quantity) < 150000;
