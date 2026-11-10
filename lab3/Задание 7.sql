@@ -6,7 +6,7 @@ CREATE VIEW users_rewievs AS
 CREATE VIEW avg_seller_rating AS
     SELECT AVG(users_rewievs.rating) AS avg_rating FROM users_rewievs;
 
+SELECT * from users_rewievs;
 SELECT * FROM avg_seller_rating;
-
 DROP VIEW avg_seller_rating;
 DROP VIEW users_rewievs;

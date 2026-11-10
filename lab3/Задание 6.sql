@@ -5,7 +5,20 @@ WITH sellers_info AS (
 )
 
 SELECT p.name, s_i.price, p.quantity FROM sellers_info AS s_i
-JOIN products AS p ON s_i.seller_id =  p.seller_id ;
+JOIN products AS p ON s_i.seller_id =  p.seller_id;
 
--- TODO рекурсивный CTE
+-- рекурсивный CTE
 
+WITH RECURSIVE parents_categories AS (
+    SELECT id, parent_id, name
+    FROM categories
+
+    UNION
+
+    SELECT categories.id, categories.parent_id, categories.name
+    FROM categories
+        JOIN parents_categories
+            ON categories.parent_id = parents_categories.id
+    )
+
+SELECT * FROM parents_categories;
