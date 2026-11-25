@@ -8,7 +8,7 @@ CREATE OR REPLACE FUNCTION return_salary_by_period(r_seller_id INT, r_date_from 
     DECLARE
         sum BIGINT;
     BEGIN
-        SELECT products.seller_id, SUM(unit_price * products.quantity) INTO sum FROM products
+        SELECT SUM(unit_price * products.quantity) INTO sum FROM products
         JOIN order_items ON products.id = order_items.product_id
         JOIN orders on order_items.order_id = orders.id
         JOIN payment ON orders.id = payment.order_id
@@ -19,5 +19,6 @@ CREATE OR REPLACE FUNCTION return_salary_by_period(r_seller_id INT, r_date_from 
         END;
         $$ LANGUAGE plpgsql;
 
--- TODO Доделать запрос. Осталось правильно вызвать функцию. Формат сравнения даты в строке, иначе воспринимается как математическое действие
+
+SELECT * FROM return_salary_by_period(8, '2025-10-25', '2023-10-16')
 
