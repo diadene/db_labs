@@ -13,7 +13,7 @@ FROM products p1
                    ON p2.price < p1.price
                        OR (p2.price = p1.price AND p2.id < p1.id)
 GROUP BY p1.id, p1.name, p1.price
-ORDER BY p1.price ASC, p1.id ASC;
+ORDER BY p1.price, p1.id;
 
 -- С оконной функцией
 SELECT name, price, ROW_NUMBER() OVER (ORDER BY price)

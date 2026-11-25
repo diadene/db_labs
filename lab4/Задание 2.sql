@@ -13,4 +13,4 @@ SELECT
     product_name, price, category_name, row_number
 FROM top_products
 WHERE row_number <= 3
-ORDER BY category_name ASC, price DESC;
+ORDER BY category_name, price DESC;

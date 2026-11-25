@@ -9,8 +9,8 @@ SELECT DISTINCT
     SUM(order_items.quantity * order_items.unit_price) OVER (PARTITION BY c.id, s.id) AS seller_revenue,
     ROUND(
             (
-                        SUM( order_items.quantity * order_items.unit_price) OVER (PARTITION BY c.id, s.id) /
-                        SUM( order_items.quantity * order_items.unit_price) OVER (PARTITION BY c.id)
+                        SUM(order_items.quantity * order_items.unit_price) OVER (PARTITION BY c.id, s.id) /
+                        SUM(order_items.quantity * order_items.unit_price) OVER (PARTITION BY c.id)
                 ) * 100,
             2
     ) AS revenue_share_pct
