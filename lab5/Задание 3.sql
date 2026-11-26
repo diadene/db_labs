@@ -19,6 +19,4 @@ CREATE OR REPLACE FUNCTION return_salary_by_period(r_seller_id INT, r_date_from 
         END;
         $$ LANGUAGE plpgsql;
 
-
 SELECT * FROM return_salary_by_period(8, '2025-10-25', '2023-10-16')
-
